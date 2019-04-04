@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>WeatherPy</title>
+    <link   rel="stylesheet" 
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous">
+    <link   rel="stylesheet" 
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" 
+            integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+            crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous">
+    </script>
+    <link   rel="stylesheet" 
+            href="Resources/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> 
+                </button>
+                <a class="navbar-brand no-margins" href="index.html">WeatherPy</a>
+                </div>
+                <div class="collapse navbar-collapse navbar-right" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="comparisons.html">
+                        <span class="glyphicon glyphicon-transfer">
+                        </span>
+                        Plot Comparison
+                    </a></li>
+                    <li><a href="data.html">
+                        <span class="glyphicon glyphicon-th">
+                        </span>
+                        Data
+                    </a></li> 
+                    <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Plots
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="temp.html">Temperature</a></li>
+                                <li><a href="humidity.html">Humidity</a></li>
+                                <li><a href="clouds.html">Cloudiness</a></li>
+                                <li><a href="wind.html">Wind</a></li>
+                            </ul>
+                            </li>
+                </ul>
+                </div>
+            </div>
+            </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-8 border">
+                <h1>WeatherPy: Latitude and Weather</h1>
+                <p class=border>
+                    <img src="Resources/latitude and temp.png" alt="Latitude v. Temperature Plot">
+                    WeatherPy examines and visualizes the weather of more than 500 cities by latitude 
+                    (distance from the equator).  
+                    </br>
+                    </br>
+                    First, WeatherPy randomly selects over 500 unique cities by latitude and longitude.  
+                    Starting from a list of 1500 randomly generated latitudes and longitudes, it uses the
+                    <a href="https://github.com/wingchen/citipy">citipy Python library</a> 
+                    to find the nearest city, returning approximately 600 unique cities. 
+                    </br>
+                    </br>
+                    Next, WeatherPy queries the 
+                    <a href="https://openweathermap.org/api">OpenWeatherMap API</a> 
+                    for weather for each city by using the
+                    <a href="https://github.com/crazycapivara/openweathermapy">openweathermapy Python wrapper</a>.  
+                    Using Python exception handling for cities not found in the OpenWeatherMap database results in 
+                    weather data for over 500 unique cities which is then saved to a csv.
+                    It then uses <a href="https://pandas.pydata.org/">pandas</a> 
+                    to extract the relevant data and combine it in a data frame.
+                    </br>
+                    </br>
+                    Finally, WeatherPy creates 
+                    <a href="https://matplotlib.org/">matplotlib</a>
+                    scatter plots comparing temperature (F), humidity %, cloudiness %, 
+                    and wind speed (MPH) to latitude, saving a copy of each plot.
+                    </br>
+                    WeatherPy's plots invert the typical orientation of independent and dependent variables (x v. y). 
+                    The independent variable is diplayed on the y-axis in order to differentiate 
+                    the horizontal lines of latitude from vertical lines of longitude.
+                </p>
+            </div>
+            <div class="col-md-4 col-sm-12 border">
+                <h2>Visualizations</h2>
+                <div class="btn-group-vertical">
+                        <a  target="_blank" href="temp.html" 
+                            class="btn btn-info" role="button">
+                            Temperature
+                        </a>
+                        <a  target="_blank" href="clouds.html" 
+                            class="btn btn-info" role="button">
+                            Cloudiness
+                        </a>
+                        <a  target="_blank" href="humidity.html" 
+                            class="btn btn-info" role="button">
+                            Humidity
+                        </a>
+                        <a  target="_blank" href="wind.html" 
+                            class="btn btn-info" role="button">
+                            Wind
+                        </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
